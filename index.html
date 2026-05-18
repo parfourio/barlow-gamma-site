@@ -438,7 +438,8 @@
         position: fixed;
         top: 0; left: 0; right: 0;
         background: var(--navy);
-        padding: 100px 24px 32px;
+        padding: 24px;
+        padding-top: 120px;
         flex-direction: column;
         gap: 0;
         z-index: 90;
@@ -520,8 +521,8 @@
   </div>
 
   <!-- WHO WE SERVE -->
-  <div class="section-wrap" id="who-we-serve">
-    <div class="section-tag">Who We Serve</div>
+  <div class="section-wrap">
+    <div class="section-tag" id="who-we-serve">Who We Serve</div>
     <h2>Who we serve</h2>
     <div class="serve-grid">
       <div class="serve-card">
@@ -619,9 +620,11 @@
     adjustLayout();
     window.addEventListener('resize', adjustLayout);
 
-    // Hamburger toggle
+    // Hamburger toggle — set padding to match banner + nav height
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('open');
+      const totalH = banner.offsetHeight + nav.offsetHeight;
+      navLinks.style.paddingTop = (totalH + 16) + 'px';
     });
 
     // Smooth scroll for anchor links + close mobile menu
