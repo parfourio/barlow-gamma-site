@@ -215,18 +215,32 @@
 
     /* ── OUR APPROACH ── */
     .approach-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      background: var(--gold);
+    }
+    .approach-left {
+      padding: 80px 60px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--gold);
+    }
+    .approach-left .section-tag { color: var(--dark); opacity: 0.7; }
+    .approach-left h2 { color: var(--dark); font-size: 36px; margin-bottom: 24px; }
+    .approach-right {
       position: relative; overflow: hidden;
-      background-image: url('https://img1.wsimg.com/isteam/getty/953783164/:/cr=t:12.49%25,l:0%25,w:100%25,h:75.03%25/rs=w:776,h:388,cg:true');
-      background-size: cover; background-position: center;
     }
-    .approach-section::before {
-      content: ''; position: absolute; inset: 0;
-      background: rgba(10, 14, 26, 0.88);
+    .approach-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
-    .approach-section .section-wrap { position: relative; z-index: 1; }
     .approach-text {
-      font-size: 20px; line-height: 1.8; color: var(--white);
-      max-width: 860px; border-left: 3px solid var(--gold); padding-left: 28px;
+      font-size: 18px; line-height: 1.8; color: var(--dark);
+      border-left: 3px solid rgba(10,14,26,0.3); padding-left: 24px;
+    }
+    @media (max-width: 900px) {
+      .approach-section { grid-template-columns: 1fr; }
+      .approach-left { padding: 60px 24px; }
+      .approach-right { min-height: 280px; }
     }
 
     /* ── WHO WE SERVE ── */
@@ -495,10 +509,13 @@
 
 
   <!-- OUR APPROACH -->
-  <div class="approach-section">
-    <div class="section-wrap" id="our-approach">
+  <div class="approach-section" id="our-approach">
+    <div class="approach-left">
       <div class="section-tag">Our Approach</div>
       <p class="approach-text">Our approach bridges the gap between the raw efficiency of Demand-Side Platforms (DSPs) and the strategic oversight of traditional agencies — offering both transparency and expertise. With over 100 years of collective experience across media, technology, and advertising, our leadership team brings deep industry knowledge, unmatched technical fluency, and relentless focus to every engagement.</p>
+    </div>
+    <div class="approach-right">
+      <img src="https://img1.wsimg.com/isteam/getty/455143989/:/cr=t:0%25,l:16.66%25,w:66.68%25,h:100%25/rs=w:1200,h:1200,cg:true" alt="Our Approach" />
     </div>
   </div>
 
