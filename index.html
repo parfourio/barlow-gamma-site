@@ -215,32 +215,34 @@
 
     /* ── OUR APPROACH ── */
     .approach-section {
-      display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 520px;
-      background: var(--gold);
-    }
-    .approach-left {
+      background: #0d3d4f;
       padding: 80px 60px;
-      display: flex; flex-direction: column; justify-content: center;
-      background: var(--gold);
     }
-    .approach-left .section-tag { color: var(--dark); opacity: 0.7; }
-    .approach-left h2 { color: var(--dark); font-size: 36px; margin-bottom: 24px; }
-    .approach-right {
-      position: relative; overflow: hidden;
+    .approach-section h2 {
+      text-align: center;
+      color: var(--white);
+      font-size: 42px;
+      margin-bottom: 56px;
     }
-    .approach-right img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
+    .approach-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .approach-img {
+      width: 100%; border-radius: 4px;
+      display: block; object-fit: cover;
+      max-height: 480px;
     }
     .approach-text {
-      font-size: 18px; line-height: 1.8; color: var(--dark);
-      border-left: 3px solid rgba(10,14,26,0.3); padding-left: 24px;
+      font-size: 18px; line-height: 1.9; color: rgba(255,255,255,0.88);
     }
     @media (max-width: 900px) {
-      .approach-section { grid-template-columns: 1fr; }
-      .approach-left { padding: 60px 24px; }
-      .approach-right { min-height: 280px; }
+      .approach-section { padding: 60px 24px; }
+      .approach-inner { grid-template-columns: 1fr; gap: 32px; }
     }
 
     /* ── WHO WE SERVE ── */
@@ -509,13 +511,11 @@
 
 
   <!-- OUR APPROACH -->
-  <div class="approach-section" id="our-approach">
-    <div class="approach-left">
-      <div class="section-tag">Our Approach</div>
+  <div class="approach-section">
+    <h2 id="our-approach">Our Approach</h2>
+    <div class="approach-inner">
+      <img class="approach-img" src="https://img1.wsimg.com/isteam/getty/455143989/:/cr=t:0%25,l:16.66%25,w:66.68%25,h:100%25/rs=w:1200,h:1200,cg:true" alt="Our Approach" />
       <p class="approach-text">Our approach bridges the gap between the raw efficiency of Demand-Side Platforms (DSPs) and the strategic oversight of traditional agencies — offering both transparency and expertise. With over 100 years of collective experience across media, technology, and advertising, our leadership team brings deep industry knowledge, unmatched technical fluency, and relentless focus to every engagement.</p>
-    </div>
-    <div class="approach-right">
-      <img src="https://img1.wsimg.com/isteam/getty/455143989/:/cr=t:0%25,l:16.66%25,w:66.68%25,h:100%25/rs=w:1200,h:1200,cg:true" alt="Our Approach" />
     </div>
   </div>
 
@@ -549,8 +549,8 @@
   </div>
 
   <!-- CONTACT -->
-  <div class="contact-section" id="contact">
-    <div class="contact-inner">
+  <div class="contact-section">
+    <div class="contact-inner" id="contact">
       <div class="contact-left">
         <div class="section-tag">Get Started</div>
         <h2>Let's get started.</h2>
