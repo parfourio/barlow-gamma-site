@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barlow Gamma Media — Programmatic Media Built for Performance</title>
+  <meta name="description" content="Barlow Gamma Media is a next-generation programmatic media buying agency built for brands with $1M–$20M in annual media spend." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #0a0e1a;
+      --navy:    #0f1729;
+      --mid:     #1a2540;
+      --border:  #1e2d4a;
+      --gold:    #c9a84c;
+      --gold-lt: #e8c97a;
+      --white:   #ffffff;
+      --muted:   #8a9bbf;
+      --text:    #c8d4e8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 60px;
+      background: rgba(10, 14, 26, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a {
+      font-size: 14px; color: var(--muted); text-decoration: none;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--gold); color: var(--dark);
+      padding: 10px 22px; border-radius: 6px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 60px 80px;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(21,56,120,0.2) 0%, transparent 50%),
+        var(--dark);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e2d4a' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+    .hero-inner { position: relative; max-width: 860px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); font-size: 12px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 8px 16px; border-radius: 20px; margin-bottom: 28px;
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; }
+    h1 {
+      font-size: 64px; font-weight: 900; line-height: 1.1;
+      letter-spacing: -2px; color: var(--white); margin-bottom: 24px;
+    }
+    h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub {
+      font-size: 20px; color: var(--text);
+      max-width: 640px; margin: 0 auto 48px; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold); color: var(--dark);
+      padding: 16px 36px; border-radius: 8px;
+      font-size: 16px; font-weight: 800;
+      text-decoration: none; transition: all 0.2s; display: inline-block;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      padding: 16px 36px; border-radius: 8px;
+      font-size: 16px; font-weight: 700;
+      text-decoration: none; border: 1px solid var(--border);
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 60px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px; text-align: center;
+    }
+    .stat-item { padding: 0 20px; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 44px; font-weight: 900; color: var(--gold);
+      letter-spacing: -2px; line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; }
+
+    /* ── LAYOUT ── */
+    .section-wrap { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      font-size: 11px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+    }
+    h2 {
+      font-size: 42px; font-weight: 900; letter-spacing: -1px;
+      color: var(--white); margin-bottom: 18px; line-height: 1.15;
+    }
+    .section-sub {
+      font-size: 18px; color: var(--text); max-width: 560px;
+      line-height: 1.7; margin-bottom: 56px;
+    }
+
+    /* ── WHO WE SERVE ── */
+    .serve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .serve-card {
+      background: var(--navy); padding: 40px 36px;
+      position: relative; overflow: hidden; transition: background 0.3s;
+    }
+    .serve-card:hover { background: var(--mid); }
+    .serve-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold); transform: scaleX(0);
+      transition: transform 0.3s; transform-origin: left;
+    }
+    .serve-card:hover::before { transform: scaleX(1); }
+    .serve-icon {
+      width: 48px; height: 48px; background: rgba(201,168,76,0.1);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 22px; margin-bottom: 20px;
+    }
+    .serve-card h3 { font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    .serve-spend { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .serve-card p { font-size: 15px; color: var(--text); line-height: 1.7; }
+
+    /* ── CAPABILITIES ── */
+    .cap-section { background: var(--navy); padding: 100px 0; }
+    .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .cap-card {
+      background: var(--dark); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .cap-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .cap-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .cap-card h3 { font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+    .cap-card p { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+    /* ── WHY ── */
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .why-card {
+      background: var(--navy); border: 1px solid var(--border);
+      border-radius: 12px; padding: 36px;
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .why-num {
+      width: 36px; height: 36px; min-width: 36px;
+      background: var(--gold); color: var(--dark);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-weight: 900; font-size: 14px;
+    }
+    .why-body h4 { font-size: 17px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    .why-body p { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+    /* ── RESULTS ── */
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+    .result-card { background: var(--navy); padding: 48px 40px; }
+    .result-client { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+    .result-stat { font-size: 52px; font-weight: 900; color: var(--white); letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
+    .result-desc { font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 20px; }
+    .result-tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+      color: var(--gold); font-size: 12px; font-weight: 600;
+      padding: 4px 12px; border-radius: 4px;
+    }
+
+    /* ── PROCESS ── */
+    .process-section { background: var(--navy); padding: 100px 0; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 56px; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute; top: 28px; left: 10%; right: 10%;
+      height: 1px; background: var(--border);
+    }
+    .process-step { padding: 0 24px; text-align: center; }
+    .step-circle {
+      width: 56px; height: 56px;
+      background: var(--navy); border: 2px solid var(--gold);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 20px;
+      font-size: 18px; font-weight: 900; color: var(--gold);
+      position: relative; z-index: 1;
+    }
+    .process-step h4 { font-size: 16px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    .process-step p { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+    /* ── TEAM ── */
+    .team-section { background: var(--dark); padding: 100px 0; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .team-card {
+      background: var(--navy); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px 24px; text-align: center;
+    }
+    .team-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--mid); margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: var(--gold);
+      border: 2px solid var(--border);
+    }
+    .team-card h4 { font-size: 16px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .team-role { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+    .team-bio { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .team-yrs {
+      display: inline-block; margin-top: 12px;
+      background: rgba(201,168,76,0.1);
+      color: var(--gold); font-size: 11px; font-weight: 700;
+      padding: 3px 10px; border-radius: 4px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        var(--dark);
+      padding: 100px 60px;
+    }
+    .contact-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: start;
+    }
+    .contact-left h2 { margin-bottom: 16px; }
+    .contact-left p { font-size: 17px; color: var(--text); line-height: 1.7; margin-bottom: 32px; }
+    .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .contact-detail .icon {
+      width: 36px; height: 36px; background: rgba(201,168,76,0.1);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 16px;
+    }
+    .contact-detail span { font-size: 15px; color: var(--text); }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label {
+      font-size: 12px; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.8px;
+      display: block; margin-bottom: 6px;
+    }
+    input, select, textarea {
+      width: 100%; background: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px;
+      font-size: 15px; color: var(--white);
+      font-family: inherit; outline: none; transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+    textarea { resize: vertical; min-height: 100px; }
+    select { appearance: none; }
+    select option { background: var(--navy); }
+    .form-submit {
+      background: var(--gold); color: var(--dark);
+      padding: 15px; border: none; border-radius: 8px;
+      font-size: 16px; font-weight: 800;
+      cursor: pointer; transition: background 0.2s; font-family: inherit;
+    }
+    .form-submit:hover { background: var(--gold-lt); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      padding: 48px 60px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 32px;
+    }
+    .footer-logo img { height: 36px; width: auto; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 24px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom p { font-size: 13px; color: var(--muted); }
+    .footer-bottom a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      h1 { font-size: 36px; letter-spacing: -1px; }
+      .hero { padding: 100px 24px 60px; }
+      .stats-bar { grid-template-columns: 1fr 1fr; padding: 24px; }
+      .stat-item { border-right: none; padding: 16px 0; }
+      .section-wrap { padding: 60px 24px; }
+      .serve-grid, .cap-grid, .results-grid, .team-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-steps::before { display: none; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .cap-section, .team-section, .process-section { padding: 60px 0; }
+      .contact-section { padding: 60px 24px; }
+      footer { padding: 40px 24px 24px; }
+      .footer-inner { flex-direction: column; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <img src="https://img1.wsimg.com/isteam/ip/dfdb7652-a4cc-443b-8a93-0768eb931041/bgmg_concept_light.png/:/rs=w:1040,h:160,cg:true,m/cr=w:1040,h:160/qt=q:95" alt="Barlow Gamma Media" />
+    </div>
+    <div class="nav-links">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#results">Results</a>
+      <a href="#process">Process</a>
+      <a href="#team">Team</a>
+    </div>
+    <a href="#contact" class="nav-cta">Start a Campaign</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Programmatic Media Specialists</div>
+      <h1>Precision media buying.<br><em>At enterprise scale.</em></h1>
+      <p class="hero-sub">Barlow Gamma Media is a next-generation media buying agency purpose-built for brands that demand DSP-level performance with strategic agency oversight — and full transparency into every dollar spent.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-gold">Start Your Campaign</a>
+        <a href="#capabilities" class="btn-ghost">See Our Capabilities</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">$2B+</div>
+      <div class="stat-label">Media Managed Annually</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100+</div>
+      <div class="stat-label">Years Combined Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Premium DSP Integrations</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3.2×</div>
+      <div class="stat-label">Average ROAS Improvement</div>
+    </div>
+  </div>
+
+  <!-- WHO WE SERVE -->
+  <div class="section-wrap">
+    <div class="section-tag">Who We Serve</div>
+    <h2>Built for brands that play at scale</h2>
+    <p class="section-sub">We partner with organizations that have outgrown basic digital advertising but don't want the overhead of an in-house trading desk.</p>
+    <div class="serve-grid">
+      <div class="serve-card">
+        <div class="serve-icon">📈</div>
+        <h3>Mid-Market Brands</h3>
+        <div class="serve-spend">$1M – $20M Annual Media Spend</div>
+        <p>Companies seeking sophisticated programmatic execution without the cost and complexity of building internal trading infrastructure. We become your expert desk.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">🛍️</div>
+        <h3>DTC & E-Commerce</h3>
+        <div class="serve-spend">Performance-Focused Growth</div>
+        <p>Performance-driven brands scaling customer acquisition efficiently across CTV, programmatic display, video, and audio — with full-funnel attribution and real-time optimization.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">🏢</div>
+        <h3>Retailers & Agencies</h3>
+        <div class="serve-spend">White-Label Capabilities</div>
+        <p>Regional and national retailers plus agencies adding programmatic capabilities to their offering without the infrastructure investment — or the hiring headaches.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPABILITIES -->
+  <div class="cap-section" id="capabilities">
+    <div class="section-wrap">
+      <div class="section-tag">Capabilities</div>
+      <h2>The full programmatic stack</h2>
+      <p class="section-sub">From CTV to audio, from data strategy to attribution — we operate across every modern channel with the same precision and accountability.</p>
+      <div class="cap-grid">
+        <div class="cap-card">
+          <div class="cap-num">01 — Channel</div>
+          <h3>Connected TV & Streaming</h3>
+          <p>Programmatic CTV buying across Hulu, Peacock, Roku, and 200+ streaming publishers. Household-level targeting with verified reach and brand-safe inventory.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">02 — Channel</div>
+          <h3>Programmatic Display & Video</h3>
+          <p>Precision display and video across open web and premium publishers. Real-time bidding with custom audience segments, contextual targeting, and dynamic creative.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">03 — Channel</div>
+          <h3>Digital Audio</h3>
+          <p>Programmatic audio across Spotify, Pandora, podcast networks, and streaming radio — reaching audiences in moments when screens aren't in front of them.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">04 — Strategy</div>
+          <h3>Audience & Data Strategy</h3>
+          <p>First-party data activation, lookalike modeling, and contextual intelligence. We turn your customer data into targeting precision at scale.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">05 — Intelligence</div>
+          <h3>Attribution & Measurement</h3>
+          <p>Multi-touch attribution, incrementality testing, and media mix modeling. Know exactly which channels are driving outcomes — not just which ones are getting credit.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">06 — Operations</div>
+          <h3>Transparency & Reporting</h3>
+          <p>Full log-level transparency into every impression, bid, and dollar. Custom dashboards, weekly reviews, and no hidden fees or opaque markup structures.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div style="padding: 100px 0;" id="results">
+    <div class="section-wrap" style="padding-bottom: 0;">
+      <div class="section-tag">Proven Results</div>
+      <h2>Performance you can measure</h2>
+      <p class="section-sub">Our clients don't just get access to premium inventory. They get outcomes that show up in their business.</p>
+    </div>
+    <div class="results-grid" style="max-width:1200px; margin: 0 auto;">
+      <div class="result-card">
+        <div class="result-client">DTC Apparel Brand</div>
+        <div class="result-stat">340%</div>
+        <p class="result-desc">Return on ad spend across CTV and programmatic display within 90 days — migrated from a legacy agency relationship.</p>
+        <span class="result-tag">CTV + Programmatic Display</span>
+      </div>
+      <div class="result-card">
+        <div class="result-client">Regional Retailer</div>
+        <div class="result-stat">62%</div>
+        <p class="result-desc">Reduction in cost per acquisition after rebuilding audience strategy and consolidating fragmented media buying into a single managed DSP environment.</p>
+        <span class="result-tag">Audience Strategy + DSP</span>
+      </div>
+      <div class="result-card">
+        <div class="result-client">Financial Services Brand</div>
+        <div class="result-stat">4.1×</div>
+        <p class="result-desc">ROAS improvement over prior agency. Full-funnel attribution model built from scratch, eliminating $400K in annual wasted spend.</p>
+        <span class="result-tag">Attribution + Optimization</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY IT WORKS -->
+  <div class="section-wrap">
+    <div class="section-tag">Why It Works</div>
+    <h2>The gap we close</h2>
+    <p class="section-sub">Most media buying falls into one of two failure modes — too automated with no strategic oversight, or too manual with too little scale. We sit in the middle on purpose.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">1</div>
+        <div class="why-body">
+          <h4>DSP Access Without the Overhead</h4>
+          <p>Direct access to premium programmatic inventory and bidding efficiency — without the headcount, technology costs, or institutional knowledge required to run it well in-house.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">2</div>
+        <div class="why-body">
+          <h4>Strategy, Not Just Execution</h4>
+          <p>Our team brings decades of experience to every campaign — thinking about audience architecture, channel sequencing, and measurement strategy, not just setting bids.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">3</div>
+        <div class="why-body">
+          <h4>Full Transparency, Always</h4>
+          <p>No black-box pricing, no hidden markup, no vague performance reports. You see exactly where your money goes, what it bought, and what it returned.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">4</div>
+        <div class="why-body">
+          <h4>Speed to Market</h4>
+          <p>We launch and optimize faster than in-house teams can be built, trained, and tooled. Your campaigns reach market in days — not quarters.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="process-section" id="process">
+    <div class="section-wrap">
+      <div class="section-tag">Our Process</div>
+      <h2>From brief to results in four steps</h2>
+      <p class="section-sub">A structured process built to move fast without cutting corners on strategy or measurement.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-circle">1</div>
+          <h4>Discovery & Audit</h4>
+          <p>We assess your current media posture, audience data, attribution setup, and competitive landscape before recommending anything.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">2</div>
+          <h4>Strategy & Architecture</h4>
+          <p>Channel mix, audience strategy, creative requirements, measurement framework — all designed before a single impression is bought.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">3</div>
+          <h4>Activation & Launch</h4>
+          <p>Campaign setup, DSP configuration, trafficking, and go-live. Full QA on every placement before spend goes live.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">4</div>
+          <h4>Optimize & Report</h4>
+          <p>Ongoing optimization, weekly performance reviews, and quarterly strategy sessions every cycle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="team-section" id="team">
+    <div class="section-wrap">
+      <div class="section-tag">Leadership</div>
+      <h2>Operators, not just advisors</h2>
+      <p class="section-sub">Our team has worked inside DSPs, agency trading desks, and brand-side media organizations. We know how this works from every angle.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">BG</div>
+          <h4>Leadership</h4>
+          <div class="team-role">Founding Partner</div>
+          <p class="team-bio">20+ years across programmatic, DSP operations, and brand-side media strategy.</p>
+          <span class="team-yrs">20+ yrs experience</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">ST</div>
+          <h4>Strategy</h4>
+          <div class="team-role">Head of Media Strategy</div>
+          <p class="team-bio">Former trading desk lead. Built programmatic practices at two top-10 agencies.</p>
+          <span class="team-yrs">15+ yrs experience</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">DA</div>
+          <h4>Analytics</h4>
+          <div class="team-role">Head of Measurement</div>
+          <p class="team-bio">Attribution modeling and media mix specialist. Built from scratch for Fortune 500 brands.</p>
+          <span class="team-yrs">12+ yrs experience</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">OP</div>
+          <h4>Operations</div>
+          <div class="team-role">Head of Activation</div>
+          <p class="team-bio">DSP-certified across The Trade Desk, DV360, and Amazon. 500+ campaigns launched.</p>
+          <span class="team-yrs">10+ yrs experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="section-tag">Get Started</div>
+        <h2>Let's talk about your media.</h2>
+        <p>Tell us about your current situation and what you're trying to achieve. We'll come back with a candid assessment of where we can help — and where we can't.</p>
+        <div class="contact-detail">
+          <div class="icon">📍</div>
+          <span>2045 Biscayne Blvd, Suite 257 — Miami, FL</span>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">✉️</div>
+          <span>hello@barlowgammamedia.com</span>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">⚡</div>
+          <span>Typical response within one business day</span>
+        </div>
+      </div>
+      <form class="contact-form">
+        <div class="form-row">
+          <div><label>First Name</label><input type="text" placeholder="Jane" /></div>
+          <div><label>Last Name</label><input type="text" placeholder="Smith" /></div>
+        </div>
+        <div><label>Work Email</label><input type="email" placeholder="jane@company.com" /></div>
+        <div><label>Company</label><input type="text" placeholder="Your company name" /></div>
+        <div>
+          <label>Annual Media Budget</label>
+          <select>
+            <option value="">Select a range...</option>
+            <option>$250K – $1M</option>
+            <option>$1M – $5M</option>
+            <option>$5M – $20M</option>
+            <option>$20M+</option>
+          </select>
+        </div>
+        <div><label>What are you trying to solve?</label><textarea placeholder="Tell us about your current media setup and what you're looking to improve..."></textarea></div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="https://img1.wsimg.com/isteam/ip/dfdb7652-a4cc-443b-8a93-0768eb931041/bgmg_concept_light.png/:/rs=w:1040,h:160,cg:true,m/cr=w:1040,h:160/qt=q:95" alt="Barlow Gamma Media" />
+      </div>
+      <div class="footer-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#results">Results</a>
+        <a href="#process">Process</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Barlow Gamma Media Group. All rights reserved. Miami, FL.</p>
+      <p><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
