@@ -30,6 +30,37 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ── OUTREACH BANNER ── */
+    .outreach-banner {
+      background: linear-gradient(135deg, #a07830 0%, #c9a84c 50%, #e8c97a 100%);
+      color: #1a1000;
+      padding: 13px 24px;
+      text-align: center;
+      font-size: 0.86rem;
+      font-weight: 500;
+      line-height: 1.5;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .outreach-banner strong { font-weight: 700; }
+    .outreach-banner a.reply-btn {
+      display: inline-block;
+      margin-left: 14px;
+      background: #0a0e1a;
+      color: #c9a84c;
+      padding: 6px 16px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: 1px solid #c9a84c;
+      transition: background 0.2s;
+    }
+    .outreach-banner a.reply-btn:hover { background: #1a2540; }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -346,6 +377,12 @@
   </style>
 </head>
 <body>
+
+  <!-- OUTREACH BANNER -->
+  <div class="outreach-banner">
+    <strong>Hi Stephanie</strong> — I put together this free concept redesign for Barlow Gamma. No pitch, just want to know what you think.
+    <a class="reply-btn" href="mailto:scott.michael.schultz@gmail.com?subject=Re%3A%20Concept%20Website%20for%20Barlow%20Gamma%20Media&body=Hi%20Scott%2C%0A%0AI%20checked%20out%20the%20concept%20site...">Reply to Scott →</a>
+  </div>
 
   <!-- NAV -->
   <nav>
