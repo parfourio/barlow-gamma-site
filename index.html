@@ -438,8 +438,7 @@
         position: fixed;
         top: 0; left: 0; right: 0;
         background: var(--navy);
-        padding: 24px;
-        padding-top: 100px;
+        padding: 16px 24px;
         flex-direction: column;
         gap: 0;
         z-index: 90;
@@ -523,6 +522,7 @@
   </div>
 
   <!-- WHO WE SERVE -->
+  <div style="background: var(--dark);">
   <div class="section-wrap">
     <div class="section-tag" id="who-we-serve">Who We Serve</div>
     <h2>Who we serve</h2>
@@ -549,6 +549,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- CONTACT -->
@@ -617,9 +618,9 @@
       const bannerH = banner.offsetHeight;
       const navH    = nav.offsetHeight;
       nav.style.top = bannerH + 'px';
+      // Mobile dropdown starts right below the nav bar (no padding-top gap)
+      navLinks.style.top = (bannerH + navH) + 'px';
       document.documentElement.style.scrollPaddingTop = (bannerH + navH + 8) + 'px';
-      // Keep mobile menu padding in sync
-      navLinks.style.paddingTop = (bannerH + navH + 8) + 'px';
     }
     adjustLayout();
     window.addEventListener('resize', adjustLayout);
