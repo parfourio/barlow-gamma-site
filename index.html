@@ -439,7 +439,7 @@
         top: 0; left: 0; right: 0;
         background: var(--navy);
         padding: 24px;
-        padding-top: 120px;
+        padding-top: 100px;
         flex-direction: column;
         gap: 0;
         z-index: 90;
@@ -449,9 +449,11 @@
       .nav-links a { padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 16px; }
       .nav-cta { display: none; }
       h1 { font-size: 36px; letter-spacing: -1px; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 140px 24px 60px; }
-      .hero-right { display: none; }
+      .hero { display: flex; flex-direction: column; min-height: auto; }
+      .hero-right { order: -1; min-height: 55vw; height: 55vw; display: block; }
+      .hero-right img { height: 100%; }
+      .hero-right::after { background: linear-gradient(to bottom, transparent 60%, var(--dark) 100%); }
+      .hero-left { padding: 32px 24px 60px; }
       .stats-bar { grid-template-columns: 1fr 1fr; padding: 24px; }
       .stat-item { border-right: none; padding: 16px 0; }
       .section-wrap { padding: 60px 24px; }
@@ -616,15 +618,15 @@
       const navH    = nav.offsetHeight;
       nav.style.top = bannerH + 'px';
       document.documentElement.style.scrollPaddingTop = (bannerH + navH + 8) + 'px';
+      // Keep mobile menu padding in sync
+      navLinks.style.paddingTop = (bannerH + navH + 8) + 'px';
     }
     adjustLayout();
     window.addEventListener('resize', adjustLayout);
 
-    // Hamburger toggle — set padding to match banner + nav height
+    // Hamburger toggle
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('open');
-      const totalH = banner.offsetHeight + nav.offsetHeight;
-      navLinks.style.paddingTop = (totalH + 16) + 'px';
     });
 
     // Smooth scroll for anchor links + close mobile menu
